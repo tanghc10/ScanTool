@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="F:\githubFile\TestZxing\app\libs\core-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fb52cf43975eb06d1696b341b5b7d8e40e8a59e5">
+        <dex dex="F:\githubFile\TestZxing\app\build\intermediates\pre-dexed\debug\core-3.0.0_8a656ee928447f6de01bd527ba39dcce48f29450.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="F:\githubFile\ScanTool\app\libs\core-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fb52cf43975eb06d1696b341b5b7d8e40e8a59e5">
+        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\core-3.0.0_b7451576f7a98bea4e30644b3215d7f6aaeee96f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\73843\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_bcc47965205019d8dd73b3b568149c7dac6b5abe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\73843\.android\build-cache\346c737ab390aca9ceaea989459cdf14a11d3109\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\classes_9f68ce36fcd2ee5d0452c802b3ebf47c3969a6d7.jar" />
+    </item>
+
+</items>
