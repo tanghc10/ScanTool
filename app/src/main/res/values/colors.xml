@@ -15,7 +15,7 @@
  limitations under the License.
  -->
 <resources>
-
+  <color name="appOrange">#f7c035</color>
   <color name="colorPrimary">#197fee</color>
   <color name="colorPrimaryDark">#197fee</color>
   <color name="colorAccent">#197fee</color>
