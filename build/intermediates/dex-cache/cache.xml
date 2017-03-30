@@ -21,21 +21,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\73843\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_bcc47965205019d8dd73b3b568149c7dac6b5abe.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\73843\.android\build-cache\346c737ab390aca9ceaea989459cdf14a11d3109\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
         <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\classes_9f68ce36fcd2ee5d0452c802b3ebf47c3969a6d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\73843\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_bcc47965205019d8dd73b3b568149c7dac6b5abe.jar" />
     </item>
 
 </items>
