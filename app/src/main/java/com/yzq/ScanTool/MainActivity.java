@@ -8,6 +8,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LocationManager locationManager;
     private String locationProvider;
     private TextView locationTv;
+    private Location location;
+    private boolean locationOK;
     private double Longitude;
     private double Latitude;
     private static final String DECODED_CONTENT_KEY = "codedContent";
@@ -49,20 +52,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         List<String> providers = locationManager.getProviders(true);
+        location = null;
         if (providers.contains(LocationManager.GPS_PROVIDER)){
             locationProvider = LocationManager.GPS_PROVIDER;
-        }else if (providers.contains(LocationManager.NETWORK_PROVIDER)){
+            location = locationManager.getLastKnownLocation(locationProvider);
+            if (location != null){
+                Log.e("Location","GPS");
+            }
+        }
+        if (location == null && providers.contains(LocationManager.NETWORK_PROVIDER)){
             locationProvider = LocationManager.NETWORK_PROVIDER;
+            Log.e("Location","Network");
         }else{
             Toast.makeText(this, "没有可用的位置提供器", Toast.LENGTH_SHORT).show();
             return;
         }
-        Location location = locationManager.getLastKnownLocation(locationProvider);
+        location = locationManager.getLastKnownLocation(locationProvider);
         if (location != null){
             showLocation(location);
+            Toast.makeText(MainActivity.this, "定位成功", Toast.LENGTH_SHORT).show();
+            Log.e("定位","lat:"+location.getLatitude()+"lon:"+location.getLongitude());
+            locationOK = true;
         }
         else {
-            locationTv.setText("定位失败");
+            Log.e("定位","失败");
+            Toast.makeText(MainActivity.this, "定位失败", Toast.LENGTH_SHORT).show();
+            locationOK = false;
         }
         locationManager.requestLocationUpdates(locationProvider, 3000, 1, locationListener);
     }
@@ -121,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
+        if (locationOK == false){
+            Toast.makeText( MainActivity.this, "手机定位失败，无法对设备进行操作", Toast.LENGTH_SHORT).show();
+            return;
+        }
         switch (v.getId()) {
             case R.id.btn_addDevice:
                 this.type = HttpManage.postType.POST_TYPE_ADD;
