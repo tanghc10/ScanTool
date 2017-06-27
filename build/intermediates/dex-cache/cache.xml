@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="F:\githubFile\ScanTool\app\libs\core-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fb52cf43975eb06d1696b341b5b7d8e40e8a59e5">
+        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\core-3.0.0_b7451576f7a98bea4e30644b3215d7f6aaeee96f.jar" />
+    </item>
+
+</items>

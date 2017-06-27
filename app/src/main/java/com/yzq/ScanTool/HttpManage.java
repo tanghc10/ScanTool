@@ -2,6 +2,7 @@ package com.yzq.ScanTool;
 
 import com.yzq.ScanTool.Util.StreamToStringUtil;
 import com.yzq.ScanTool.Util.StringUtil;
+import com.yzq.ScanTool.event.HttpGetEvent;
 import com.yzq.ScanTool.event.HttpPostEvent;
 
 import java.io.OutputStream;
@@ -14,10 +15,33 @@ import org.greenrobot.eventbus.EventBus;
  */
 
 public class HttpManage {
+    public enum getType{
+        GET_TYPE_ADDR,
+        GET_TYPE_DEVICEINFO,
+
+    }
     public enum postType{
-        POST_TYPE_ADD,
-        POST_TYPE_UPDATE,
-        POST_TYPE_DELETE,
+        POST_TYPE_ADDDEIVCE,
+
+    }
+    public static void getHttpResult(final String url, final getType getType){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpURLConnection connection;
+                try {
+                    URL getURL = new URL(url);
+                    connection = (HttpURLConnection) getURL.openConnection();
+                    connection.setConnectTimeout(5 * 1000);
+                    connection.setRequestMethod("GET");
+                    connection.setRequestProperty("Content-Type", "application/json");
+                    String result = StreamToStringUtil.StreamToString(connection.getInputStream());
+                    EventBus.getDefault().post(new HttpGetEvent(getType, StringUtil.decodeUnicode(result), true));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
     public static void postHttpResult(final String url, final postType postType, final String body){
         new Thread(new Runnable() {

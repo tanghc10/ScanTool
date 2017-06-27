@@ -18,7 +18,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="top"
-        android:background="#99000000">
+        android:background="@color/appOrange">
         
         <ImageButton
             android:id="@+id/capture_imageview_back"

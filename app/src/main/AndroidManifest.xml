@@ -26,9 +26,11 @@
 
         <activity
             android:name="com.yzq.ScanTool.zxing.android.CaptureActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <activity android:name="com.yzq.ScanTool.AddDevice"
+            android:label="添加设备"
+            android:theme="@android:style/Theme.NoTitleBar"/>
     </application>
 
 </manifest>
