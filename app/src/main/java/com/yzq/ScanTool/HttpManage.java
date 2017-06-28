@@ -18,6 +18,7 @@ public class HttpManage {
     public enum getType{
         GET_TYPE_ADDR,
         GET_TYPE_DEVICEINFO,
+        GET_TYPE_HISTORY,
 
     }
     public enum postType{

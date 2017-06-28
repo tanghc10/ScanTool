@@ -13,7 +13,6 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/a1"
-        android:label="液位器二维码扫描工具"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.yzq.ScanTool.MainActivity">
@@ -29,7 +28,8 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity android:name="com.yzq.ScanTool.AddDevice"
-            android:label="添加设备"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".pressureHistory"
             android:theme="@android:style/Theme.NoTitleBar"/>
     </application>
 

@@ -132,6 +132,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         textView.setOnClickListener(this);
         btn_search.setOnClickListener(this);
         pic_addDevice.setOnClickListener(this);
+        myprogressBar.setOnClickListener(this);
     }
 
     /*
@@ -163,6 +164,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 bundle.putDouble("Latitude", Latitude);
                 bundle.putString("AddrDetail", AddrDetail);
                 intent.putExtras(bundle);
+                startActivity(intent);
+                break;
+            case R.id.progressBar:
+                intent.setClass(MainActivity.this, pressureHistory.class);
                 startActivity(intent);
                 break;
             default:

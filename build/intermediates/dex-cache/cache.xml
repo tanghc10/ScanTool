@@ -3,6 +3,15 @@
 
     <item
         is-multidex="false"
+        jar="F:\githubFile\ScanTool\app\libs\hellocharts-library-1.5.8.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="700944cb3a8ce4fe543cfac1a9146a11cbf702dc">
+        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\hellocharts-library-1.5.8_56070a4498f13bc53eda2a68d93d1965b96f5d70.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="F:\githubFile\ScanTool\app\libs\core-3.0.0.jar"
         jumboMode="false"
         optimize="true"
