@@ -155,7 +155,7 @@ public class pressureHistory extends Activity {
         axisX.setTextColor(Color.parseColor("#D6D6D9"));
         axisX.setName("时间");
         axisX.setTextSize(10);
-        axisX.setMaxLabelChars(8);
+        axisX.setMaxLabelChars(10);
         axisX.setValues(mAxisXValues);
         data.setAxisXBottom(axisX);
         axisX.setHasLines(true);
@@ -218,6 +218,8 @@ public class pressureHistory extends Activity {
                 }
                 pressure[i] = pressure[i] * 10;
             }
+            mAxisXValues.clear();
+            mPointValues.clear();
             getAxisXLables(time);
             getAxisXPoints(pressure);
             initLineChart();
