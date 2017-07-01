@@ -3,21 +3,30 @@
 
     <item
         is-multidex="false"
-        jar="F:\githubFile\ScanTool\app\libs\hellocharts-library-1.5.8.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="700944cb3a8ce4fe543cfac1a9146a11cbf702dc">
-        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\hellocharts-library-1.5.8_56070a4498f13bc53eda2a68d93d1965b96f5d70.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="F:\githubFile\ScanTool\app\libs\core-3.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="fb52cf43975eb06d1696b341b5b7d8e40e8a59e5">
         <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\core-3.0.0_b7451576f7a98bea4e30644b3215d7f6aaeee96f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="F:\githubFile\ScanTool\app\libs\BaiduLBS_Android.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ffdb9b3a3a8a38edbc201f5d9fb49d03bfd0578">
+        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\BaiduLBS_Android_9f62261bf114ab9189bc1ad4c6ac0d1e735959fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="F:\githubFile\ScanTool\app\libs\hellocharts-library-1.5.8.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="700944cb3a8ce4fe543cfac1a9146a11cbf702dc">
+        <dex dex="F:\githubFile\ScanTool\app\build\intermediates\pre-dexed\debug\hellocharts-library-1.5.8_56070a4498f13bc53eda2a68d93d1965b96f5d70.jar" />
     </item>
 
 </items>

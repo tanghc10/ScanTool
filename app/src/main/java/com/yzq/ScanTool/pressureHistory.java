@@ -1,11 +1,15 @@
 package com.yzq.ScanTool;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.yzq.ScanTool.event.HttpGetEvent;
 
@@ -35,8 +39,16 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 public class pressureHistory extends Activity {
     private String Tag = "pressureHistory";
+    private String deciceId;
     private LineChartView lineChart;
     private ImageButton image_back;
+    private EditText start_year;
+    private EditText start_month;
+    private EditText start_day;
+    private EditText end_year;
+    private EditText end_month;
+    private EditText end_day;
+    private Button btn_getHistory;
     private List<PointValue> mPointValues = new ArrayList<PointValue>();
     private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
     private ArrayList<String> time;
@@ -47,16 +59,33 @@ public class pressureHistory extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        getHistory();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        deciceId = bundle.getString("deviceId");
+        initView();
     }
 
     public void initView(){
         lineChart = (LineChartView) findViewById(R.id.line_chart);
         image_back = (ImageButton) findViewById(R.id.history_imageview_back);
+        start_year = (EditText) findViewById(R.id.input_start_year);
+        start_month = (EditText) findViewById(R.id.input_start_month);
+        start_day = (EditText) findViewById(R.id.input_start_day);
+        end_year = (EditText) findViewById(R.id.input_end_year);
+        end_month = (EditText) findViewById(R.id.input_end_month);
+        end_day = (EditText) findViewById(R.id.input_end_day);
+        btn_getHistory = (Button) findViewById(R.id.btn_getHistory);
         image_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        btn_getHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(pressureHistory.this, "正在获取数据", Toast.LENGTH_SHORT).show();
+                getHistory();
             }
         });
     }
@@ -86,6 +115,7 @@ public class pressureHistory extends Activity {
      *  x轴的显示
      */
     private void getAxisXLables(ArrayList<String> time){
+        Log.d("time.size", " " + time.size());
         for (int i = 0; i < time.size(); i++){
             mAxisXValues.add(new AxisValue(i).setLabel(time.get(i)));
         }
@@ -95,6 +125,7 @@ public class pressureHistory extends Activity {
      *  图表中的每个点的显示
      */
     private void getAxisXPoints(float[] pressure){
+        Log.d("pressure.length", " " + pressure.length);
         for (int i = 0; i < pressure.length; i++){
             mPointValues.add(new PointValue(i, pressure[i]));
         }
@@ -149,24 +180,30 @@ public class pressureHistory extends Activity {
     }
 
     public void getHistory(){
-        String DeviceId = "device001";
-        String startTime = "2017-06-26-00:00:00";
-        String endTime = "2017-06-26-21:10:10";
-        String Url = HttpHost + "get_data/" + DeviceId + "?start=" + startTime + "&end=" + endTime;
+        String startTime = start_year.getText().toString() + "-" +
+                            start_month.getText().toString() + "-" +
+                             start_day.getText().toString();
+        String endTime = end_year.getText().toString() + "-" +
+                          end_month.getText().toString() + "-" +
+                           end_day.getText().toString();
+        String Url = HttpHost + "get_data/" + deciceId + "?start=" + startTime + "&end=" + endTime;
         Log.d(Tag, Url);
         HttpManage.getHttpResult(Url, HttpManage.getType.GET_TYPE_HISTORY);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onHttpGetEvent(HttpGetEvent event){
-        Log.d("History", event.getResultStr());
         try {
             JSONArray jsonArray = new JSONArray(event.getResultStr());
             JSONObject jsonObject;
             String datetime;
             time = new ArrayList<String>();
             int length = jsonArray.length();
-            Log.d("jsonArray.length", " " + length);
+            if (length == 0){
+                Toast.makeText(pressureHistory.this, "在此时间段无数据", Toast.LENGTH_LONG).show();
+                return;
+            }
+            Toast.makeText(pressureHistory.this, "查询成功", Toast.LENGTH_LONG).show();
             pressure = new float[length];
             for (int i = 0; i < length; i++){
                 jsonObject = jsonArray.getJSONObject(i);
