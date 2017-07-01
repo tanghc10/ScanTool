@@ -20,6 +20,7 @@ import com.yzq.ScanTool.zxing.android.CaptureActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -78,9 +79,9 @@ public class AddDevice extends Activity {
             public void onClick(View v) {
                 txt_apply = apply.getText().toString();
                 if (txt_deviceId == null || txt_deviceId.length() == 0){
-                    Toast.makeText(AddDevice.this, "请先扫描设备ID", Toast.LENGTH_SHORT);
+                    Toast.makeText(AddDevice.this, "请先扫描设备ID", Toast.LENGTH_SHORT).show();
                 }else if (txt_apply == null || txt_apply.length() == 0) {
-                    Toast.makeText(AddDevice.this, "请输入应用单位", Toast.LENGTH_SHORT);
+                    Toast.makeText(AddDevice.this, "请输入应用单位", Toast.LENGTH_SHORT).show();
                 }else{
                     JSONObject jsonObject = new JSONObject();
                     try{
@@ -151,12 +152,13 @@ public class AddDevice extends Activity {
                             handler.post(runnableUi);
                         }
                     }else {
-                        Toast.makeText(AddDevice.this, "扫描结果中无DeviceID", Toast.LENGTH_SHORT);
+                        Toast.makeText(AddDevice.this, "扫描结果中无DeviceID", Toast.LENGTH_SHORT).show();
                         deviceId.setClickable(true);
                     }
                 }catch (JSONException e){
                     e.printStackTrace();
                 }
+
             }
         }
     }
@@ -175,9 +177,8 @@ public class AddDevice extends Activity {
         return "http://test.xiaoan110.com:8088/liquid/add_device";
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onHttpPostEvent(HttpPostEvent event){
-        Log.d(Tag, event.getResultStr());
-
+        Toast.makeText(AddDevice.this, "添加完成", Toast.LENGTH_LONG).show();
     }
 }
