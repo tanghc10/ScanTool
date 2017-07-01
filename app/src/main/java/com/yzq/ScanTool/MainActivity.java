@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
-import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -299,6 +297,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     setMyprogressBar(hight);
                 }else {
                     dealWithErrorMsg(code);
+                    Longitude_device = 0;
+                    Latitude_device = 0;
+                    addrDetail = null;
                 }
             }catch (JSONException e){
                 e.printStackTrace();
@@ -308,9 +309,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public void dealWithErrorMsg(int code){
         if (code == 102){
-            Toast.makeText(MainActivity.this, "Error:设备无液压数据", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Error:设备无液压数据", Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(MainActivity.this, "Error:设备不存在", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Error:设备不存在", Toast.LENGTH_SHORT).show();
         }
     }
 }
