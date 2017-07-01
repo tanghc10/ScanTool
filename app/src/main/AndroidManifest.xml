@@ -2,20 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yzq.ScanTool">
 
+    <uses-sdk android:minSdkVersion="4"/>
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
+        android:name="com.yzq.ScanTool.MapApplication"
         android:allowBackup="true"
         android:icon="@mipmap/a1"
-        android:label="液位器二维码扫描工具"
+        android:label="液位器管理工具"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="uWjpG3xOVQjlZeX8I4sOGpZZUZGfwji1"/>
         <activity android:name="com.yzq.ScanTool.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,9 +35,14 @@
 
         <activity
             android:name="com.yzq.ScanTool.zxing.android.CaptureActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <activity android:name="com.yzq.ScanTool.AddDevice"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".pressureHistory"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".MapActivity"
+            android:theme="@android:style/Theme.NoTitleBar"/>
     </application>
 
 </manifest>

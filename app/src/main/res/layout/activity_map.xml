@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="top"
+        android:id="@+id/title_map"
+        android:background="@color/appOrange">
+
+        <ImageButton
+            android:id="@+id/map_imageview_back"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_capture_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffffff"
+            android:textSize="20sp"
+            android:text="地图"/>
+    </RelativeLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/mapView"
+        app:layout_constraintTop_toBottomOf="@+id/title_map"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view_location"
+        app:layout_constraintRight_toRightOf="parent"></com.baidu.mapapi.map.MapView>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:id="@+id/view_location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/location_deviceId"
+        android:text="设备名称"
+        android:textSize="25px"
+        app:layout_constraintTop_toTopOf="@+id/view_location"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="@+id/view_location"
+        android:layout_marginLeft="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_location"
+        android:text="设备位置"
+        android:textSize="35px"
+        app:layout_constraintLeft_toLeftOf="@+id/location_deviceId"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/location_deviceId"
+        android:layout_marginTop="10dp"/>
+
+</android.support.constraint.ConstraintLayout>
