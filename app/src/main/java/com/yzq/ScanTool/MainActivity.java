@@ -3,6 +3,7 @@ package com.yzq.ScanTool;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 public class MainActivity extends Activity implements View.OnClickListener {
     private String Tag = "MainActivity";
     private String deviceId;
@@ -50,7 +53,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private double Latitude;
     private double Longitude_device;
     private double Latitude_device;
-    private static final String HttpHost = "http://test.xiaoan110.com:8088/liquid/";
+    private static final String HttpHost = "https://test.xiaoan110.com/liquid/";
     private static final String ak = "uWjpG3xOVQjlZeX8I4sOGpZZUZGfwji1";
     private static final String mcode = "C7:AA:6C:22:FB:B6:59:8F:1D:47:88:22:FD:D7:5A:31:CA:C9:AE:33;com.yzq.testzxing";
 
@@ -160,7 +163,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     Toast.makeText( MainActivity.this, "手机定位失败，无法对设备进行操作", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Log.d(Tag, AddrDetail);
                 intent.setClass(MainActivity.this, AddDevice.class);
                 Bundle bundle = new Bundle();
                 bundle.putDouble("Longtitude", Longitude);
@@ -277,6 +279,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }else if (event.getType() == HttpManage.getType.GET_TYPE_DEVICEINFO){
             try{
                 JSONObject result = new JSONObject(event.getResultStr());
+                Log.e(Tag, result.toString());
                 int code = result.getInt("code");
                 if (code == 0){
                     Toast.makeText(MainActivity.this, "查询成功", Toast.LENGTH_SHORT).show();
