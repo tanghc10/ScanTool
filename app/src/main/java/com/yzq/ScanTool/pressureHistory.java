@@ -21,6 +21,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import lecho.lib.hellocharts.gesture.ZoomType;
@@ -53,7 +55,7 @@ public class pressureHistory extends Activity {
     private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
     private ArrayList<String> time;
     private float[] pressure;
-    private static final String HttpHost = "http://test.xiaoan110.com:8088/liquid/";
+    private static final String HttpHost = "https://test.xiaoan110.com/liquid/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -75,6 +77,15 @@ public class pressureHistory extends Activity {
         end_month = (EditText) findViewById(R.id.input_end_month);
         end_day = (EditText) findViewById(R.id.input_end_day);
         btn_getHistory = (Button) findViewById(R.id.btn_getHistory);
+        Calendar now = Calendar.getInstance();
+        Calendar tomorrow = new GregorianCalendar();
+        tomorrow.add(tomorrow.DAY_OF_MONTH, 1);
+        start_year.setText(""+now.get(Calendar.YEAR));
+        end_year.setText(""+now.get(Calendar.YEAR));
+        start_month.setText(""+(now.get(Calendar.MONTH)+1));
+        end_month.setText(""+(now.get(Calendar.MONTH)+1));
+        start_day.setText(""+now.get(Calendar.DAY_OF_MONTH));
+        end_day.setText(""+tomorrow.get(Calendar.DAY_OF_MONTH));
         image_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +173,7 @@ public class pressureHistory extends Activity {
 
         //y轴
         Axis axisY = new Axis();
-        axisY.setName("深度");
+        axisY.setName("压力");
         axisY.setTextSize(10);
         data.setAxisYLeft(axisY);
 
@@ -194,6 +205,7 @@ public class pressureHistory extends Activity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onHttpGetEvent(HttpGetEvent event){
         try {
+            Log.e(Tag, event.getResultStr());
             JSONArray jsonArray = new JSONArray(event.getResultStr());
             JSONObject jsonObject;
             String datetime;
@@ -213,10 +225,6 @@ public class pressureHistory extends Activity {
                 }
                 time.add(i, datetime);
                 pressure[i] = (float)(jsonObject.getDouble("Pressure"));
-                if (pressure[i] > 6){
-                    pressure[i] = pressure[i] % 6;
-                }
-                pressure[i] = pressure[i] * 10;
             }
             mAxisXValues.clear();
             mPointValues.clear();

@@ -55,6 +55,7 @@ public class AddDevice extends Activity {
         Longitude = bundle.getDouble("Longtitude");
         Latitude = bundle.getDouble("Latitude");
         addrDetail = bundle.getString("AddrDetail");
+        Log.e(Tag, addrDetail);
         handler = new Handler(Looper.getMainLooper());
         initView();
     }
@@ -90,6 +91,7 @@ public class AddDevice extends Activity {
                         jsonObject.put("Latitude", Latitude);
                         jsonObject.put("department", txt_apply);
                         jsonObject.put("addrDetail", addrDetail);
+                        Log.e(Tag, jsonObject.toString());
                         HttpManage.postHttpResult(getAddDeviceUrl(), HttpManage.postType.POST_TYPE_ADDDEIVCE, jsonObject.toString());
                     }catch (JSONException e){
                         e.printStackTrace();
@@ -174,11 +176,17 @@ public class AddDevice extends Activity {
     };
 
     public String getAddDeviceUrl(){
-        return "http://test.xiaoan110.com:8088/liquid/add_device";
+        return "https://test.xiaoan110.com/liquid/add_device";
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onHttpPostEvent(HttpPostEvent event){
-        Toast.makeText(AddDevice.this, "添加完成", Toast.LENGTH_LONG).show();
+        Log.e(Tag, event.getResultStr());
+        String resultStr = event.getResultStr();
+        if (resultStr.equals("THERE IS A REPEATING DEVICEID")){
+            Toast.makeText(AddDevice.this, "请勿重复添加同一设备", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(AddDevice.this, "添加完成", Toast.LENGTH_LONG).show();
+        }
     }
 }
